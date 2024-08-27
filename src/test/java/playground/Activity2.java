@@ -9,7 +9,7 @@ public class Activity2 {
 
     //Write a method that takes firstName and Last Name as parameters
     //and Return full name in format LASTNAME, Firstname
-    // mohammad -> Mohammad
+    // akbar -> Akbar
 
     //Step 2) Write A test in TestNG to test above method functionality
     public String getFullName(String firstName, String lastName) {
@@ -37,7 +37,7 @@ public class Activity2 {
     @DataProvider(name = "positiveTestData")
     private String[][] positiveTestData() {
         String[][] data = {
-                {"mohammad", "shokriyan", "SHOKRIYAN, Mohammad" },
+                {"ali", "shokriyan", "SHOKRIYAN, Akbar" },
                 {"JoHN", "SMITH", "SMITH, John" },
                 {" ALEN ", " smith ", "SMITH, Alen" },
 

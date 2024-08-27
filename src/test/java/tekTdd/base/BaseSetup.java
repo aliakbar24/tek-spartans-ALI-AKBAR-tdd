@@ -1,4 +1,4 @@
-package tek.tdd.base;
+package tekTdd.base;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,20 +34,24 @@ public abstract class BaseSetup {
         String configFilePath = System.getProperty("user.dir")
                 + "/src/test/resources/configs/dev-config.properties";
         try {
-            LOGGER.debug("Reading Config file from path {}", configFilePath);
+            LOGGER.debug("Reading Config file from path {}",
+                    configFilePath);
             InputStream inputStream = new FileInputStream(configFilePath);
             properties = new Properties();
             properties.load(inputStream);
         } catch (IOException ioException) {
-            LOGGER.error("Config file error with message {}", ioException.getMessage());
-            throw new RuntimeException("Config file error with message" + ioException.getMessage());
+            LOGGER.error("Config file error with message {}",
+                    ioException.getMessage());
+            throw new RuntimeException("Config file error with message"
+                    + ioException.getMessage());
         }
     }
 
     public void setupBrowser() {
         String url = properties.getProperty("ui.url");
         String browserType = properties.getProperty("ui.browser");
-        boolean isHeadless = Boolean.parseBoolean(properties.getProperty("ui.browser.headless"));
+        boolean isHeadless = Boolean.parseBoolean(properties.getProperty
+                ("ui.browser.headless"));
         LOGGER.info("Opening on {} browser", browserType);
         LOGGER.info("Is Headless ON {}", isHeadless);
 
@@ -68,12 +72,14 @@ public abstract class BaseSetup {
                 driver = new EdgeDriver(edgeOptions);
                 break;
             default:
-                throw new RuntimeException("Wrong browser type, choose between chrome,firefox, edge");
+                throw new RuntimeException("Wrong browser type, " +
+                        "choose between chrome,firefox, edge");
         }
         LOGGER.info("Navigating to URL {}", url);
         driver.get(url);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_TIME_IN_SECOND));
+        driver.manage().timeouts().implicitlyWait(
+                Duration.ofSeconds(WAIT_TIME_IN_SECOND));
     }
 
     public void quitBrowser() {
